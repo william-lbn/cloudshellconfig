@@ -1,0 +1,12 @@
+
+server:
+  port: 8888
+spring:
+  application:
+    name: cloud-shell-config
+
+
+k8s-config:
+  kubeConfigPath: "classpath:/k8s-config/cluster/config"
+  namespace: "default"
+  userSystemPath: "classpath:/k8s-config/usersystem/config"
