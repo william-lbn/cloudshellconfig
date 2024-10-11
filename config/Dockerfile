@@ -1,5 +1,5 @@
 # 使用官方 Maven 镜像作为构建阶段
-FROM maven:3.8.5-openjdk-19 AS build
+FROM maven:3.9.3-openjdk-19 AS build
 
 # 设置工作目录
 WORKDIR /app
