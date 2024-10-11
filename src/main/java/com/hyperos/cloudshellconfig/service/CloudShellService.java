@@ -12,9 +12,9 @@ public interface CloudShellService {
 
     /**
      * 创建cloud shell
-     * @param serviceName serviceName
+     * @param teamName teamName
      * @return cloud shell 地址
      */
-    String createCloudShell(String serviceName);
+    String createCloudShell(String teamName);
 
 }

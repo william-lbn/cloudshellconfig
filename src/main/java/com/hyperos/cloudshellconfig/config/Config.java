@@ -31,6 +31,8 @@ public class Config {
 
     public static String userSystemPath;
 
+    public static String cloudShellImage;
+
     @Value(value = "${k8s-config.kubeConfigPath}")
     public void setCluster(String cluster) throws IOException {
         if (cluster.startsWith("classpath:")) {
@@ -38,7 +40,7 @@ public class Config {
         } else {
             this.cluster = System.getProperty("user.dir") + cluster;
         }
-        log.info("setKubeConfigPath--> " + this.cluster);
+        log.info("setClusterPath--> " + this.cluster);
 
     }
 
@@ -48,8 +50,19 @@ public class Config {
     }
 
     @Value(value = "${k8s-config.userSystemPath}")
-    public void setUserSystemPath(String userSystemPath) {
-        this.userSystemPath = userSystemPath;
+    public void setUserSystemPath(String userSystemPath) throws IOException {
+        if (userSystemPath.startsWith("classpath:")) {
+            this.userSystemPath = resourceLoader.getResource(userSystemPath).getFile().getAbsolutePath();
+        } else {
+            this.userSystemPath = System.getProperty("user.dir") + userSystemPath;
+        }
+        log.info("setUserSystemPathPath--> " + this.userSystemPath);
+
+    }
+
+    @Value(value = "${cloud-shell.image}")
+    public void setCloudShellImage(String cloudShellImage) {
+        this.cloudShellImage = cloudShellImage;
     }
 
 }

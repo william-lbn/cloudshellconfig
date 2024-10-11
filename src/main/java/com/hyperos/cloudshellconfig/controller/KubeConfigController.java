@@ -1,7 +1,9 @@
 package com.hyperos.cloudshellconfig.controller;
 
 import com.hyperos.cloudshellconfig.response.ResponseData;
+import com.hyperos.cloudshellconfig.service.CloudShellService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,10 +20,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hyperos/api/cloudshell")
 public class KubeConfigController {
 
-    @PatchMapping("/{serviceName}")
-    public ResponseData<?> cloudShellController(@PathVariable("serviceName") String serviceName) {
+    @Autowired
+    private CloudShellService cloudShellService;
 
-        return ResponseData.success();
+    @PatchMapping("/{teamName}")
+    public ResponseData<?> cloudShellController(@PathVariable("teamName") String teamName) {
+
+        String url = cloudShellService.createCloudShell(teamName);
+
+        return ResponseData.success(url);
     }
 
 }

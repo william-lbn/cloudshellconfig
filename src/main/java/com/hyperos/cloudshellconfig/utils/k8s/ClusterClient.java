@@ -44,7 +44,7 @@ public class ClusterClient {
             return apiClient;
         } catch (IOException e) {
             log.error("create core1Cluster1 client error. {}.", e.getMessage());
-            throw new UserSystemException(ResponseCode.CloudShell90004);
+            throw new UserSystemException(ResponseCode.CloudShell100005);
         }
 
     }
@@ -60,7 +60,7 @@ public class ClusterClient {
             return apiClient;
         } catch (IOException e) {
             log.error("create core1Cluster1 client error. {}.", e.getMessage());
-            throw new UserSystemException(ResponseCode.CloudShell90004);
+            throw new UserSystemException(ResponseCode.CloudShell100005);
         }
 
     }

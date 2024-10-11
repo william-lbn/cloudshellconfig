@@ -1,6 +1,6 @@
 
 server:
-  port: 8888
+  port: 8080
 spring:
   application:
     name: cloud-shell-config
@@ -10,3 +10,7 @@ k8s-config:
   kubeConfigPath: "classpath:/k8s-config/cluster/config"
   namespace: "default"
   userSystemPath: "classpath:/k8s-config/usersystem/config"
+
+
+cloud-shell:
+  image: "121.40.102.76:30080/pml_user_system/cloudshell:v0.7.5"
