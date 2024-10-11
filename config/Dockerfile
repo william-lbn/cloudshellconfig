@@ -1,5 +1,17 @@
-# 使用官方 Maven 镜像作为构建阶段
-FROM maven:3.9.3-openjdk-19 AS build
+# 使用官方 OpenJDK 19 镜像作为基础镜像
+FROM openjdk:19-jdk-alpine AS build
+
+# 安装 Maven
+RUN apk add --no-cache curl bash \
+    && mkdir -p /usr/share/maven /usr/share/maven/ref \
+    && curl -fsSL -o /tmp/apache-maven.tar.gz https://archive.apache.org/dist/maven/maven-3/3.9.3/binaries/apache-maven-3.9.3-bin.tar.gz \
+    && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
+    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
+    && rm -rf /tmp/apache-maven.tar.gz
+
+# 设置 Maven 环境变量
+ENV MAVEN_HOME /usr/share/maven
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
 # 设置工作目录
 WORKDIR /app
@@ -14,7 +26,7 @@ COPY src ./src
 # 构建项目
 RUN mvn clean package -DskipTests
 
-# 使用官方 OpenJDK 运行时作为运行阶段
+# 使用官方 OpenJDK 19 运行时作为运行阶段
 FROM openjdk:19-jdk-alpine
 
 # 设置工作目录
