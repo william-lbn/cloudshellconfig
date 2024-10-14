@@ -1,0 +1,16 @@
+apiVersion: cloudshell.cloudtty.io/v1alpha1
+kind: CloudShell
+metadata:
+  name: nginx-ingress-demo
+  namespace: "default"
+spec:
+  secretRef:
+    name: "testconfig"
+  commandAction: "bash"
+  exposureMode: "Ingress"
+  once: false
+  image: registry.cn-hangzhou.aliyuncs.com/william_neon/cloudshell:v0.7.5
+  ingressConfig:
+    ingressName: "cloudshell-ingress-demo"
+    namespace: "default"
+    ingressClassName: "nginx"

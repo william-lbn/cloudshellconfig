@@ -14,3 +14,13 @@ k8s-config:
 
 cloud-shell:
   image: "121.40.102.76:30080/pml_user_system/cloudshell:v0.7.5"
+
+
+
+
+
+
+
+
+
+

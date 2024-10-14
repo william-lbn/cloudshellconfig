@@ -50,10 +50,10 @@ jobs:
       # 构建 Docker 镜像
       - name: Build Docker image
         run: |
-          docker build -f config/Dockerfile -t ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-app:${{ github.sha }} .
-          docker tag ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-app:${{ github.sha }} ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-app:latest
+          docker build -f config/Dockerfile -t ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-config-app:${{ github.sha }} .
+          docker tag ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-config-app:${{ github.sha }} ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-config-app:latest
 
       # 推送 Docker 镜像到私有仓库
       - name: Push Docker image to Private Registry
         run: |
-          docker push ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-app:latest
+          docker push ${{ secrets.REGISTRY_URL }}/william_neon/cloudshell-config-app:latest

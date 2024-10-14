@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core1-cluster1
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 32001
+  selector:
+    app: core1-cluster1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core1-cluster1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core1-cluster1
+  template:
+    metadata:
+      labels:
+        app: core1-cluster1
+    spec:
+      containers:
+        - name: core1-cluster1
+          image: 121.40.102.76:30080/pml_user_system/cloudshell-config-app:v1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: core1-cluster1
+              mountPath: /app/application.yaml
+              subPath: application.yaml
+              readOnly: true
+            - name: core1-cluster1
+              mountPath: /app/k8s-config/cluster
+              subPath: config
+              readOnly: true
+            - name: core1-cluster1
+              mountPath: /app/k8s-config/usersystem
+              subPath: config
+              readOnly: true
+      volumes:
+        - name: core1-cluster1
+          configMap:
+            name: core1-cluster1
+            defaultMode: 420
+            items:
+              - key: application.yaml  # key 和 path 同名即可
+                path: application.yaml
+              - key: k8s-config.cluster
+                path: config
+              - key: k8s-config.usersystem
+                path: config
+
