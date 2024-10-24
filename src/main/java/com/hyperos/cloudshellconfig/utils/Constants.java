@@ -10,5 +10,5 @@ package com.hyperos.cloudshellconfig.utils;
  */
 public class Constants {
 
-    public static final String CLOUD_PRE_PATH = "/hyperos/cloudshell/";
+    public static final String CLOUD_PRE_PATH = "/apis/v1alpha1/cloudshell";
 }

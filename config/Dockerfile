@@ -39,4 +39,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 # 运行应用
-CMD ["java","-jar","-Dspring.config.location=application.yaml","-Dk8s-config.kubeConfigPath=/k8s-config/cluster/config","-Dk8s-config.kubeConfigPath=/k8s-config/usersystem/config","app.jar"]
+CMD ["java","-jar","-Dspring.config.location=application.yaml","-Dk8s-config.kubeConfigPath=/k8s-config/cluster/config","-Dk8s-config.kubeConfigPath=/k8s-config/clodushell/config","app.jar"]
+
+
+

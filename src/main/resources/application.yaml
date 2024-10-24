@@ -9,7 +9,7 @@ spring:
 k8s-config:
   kubeConfigPath: "classpath:/k8s-config/cluster/config"
   namespace: "default"
-  userSystemPath: "classpath:/k8s-config/usersystem/config"
+  userSystemPath: "classpath:/k8s-config/clodushell/config"
 
 
 cloud-shell:
